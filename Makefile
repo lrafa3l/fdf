@@ -6,7 +6,7 @@
 #    By: lrafael <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/28 13:09:10 by lrafael           #+#    #+#              #
-#    Updated: 2024/08/09 16:57:09 by lrafael          ###   ########.fr        #
+#    Updated: 2024/08/25 08:48:28 by lrafael          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,19 +15,18 @@ CC				= cc
 CFLAGS			= -Wall -Wextra -Werror
 
 # Directories
-SRCS_DIR		= src
+SRCS_DIR		= srcs
 OBJS_DIR		= obj
 LIBFT_DIR		= ./libft
 MINILIBX_DIR	= ./minilibx-linux
-INCLUDE			= -Iincludes -I/usr/include -Imlx_linux -O3
+INCLUDE			= -Iincs -I/usr/include -Imlx_linux -O3
 
 # Source and Objects files
-SRCS			= $(SRCS_DIR)/fdf.c					\
-					$(SRCS_DIR)/fdf_utils.c			\
+SRCS			= $(SRCS_DIR)/fdf_main.c			\
+					$(SRCS_DIR)/fdf_extra.c			\
 					$(SRCS_DIR)/fdf_map_process.c	\
 					$(SRCS_DIR)/fdf_hooks.c			\
-					$(SRCS_DIR)/fdf_data.c			\
-					$(SRCS_DIR)/fdf_draw.c
+					$(SRCS_DIR)/fdf_file_check.c
 
 OBJS			= $(SRCS:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
 
