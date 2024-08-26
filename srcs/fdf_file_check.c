@@ -6,7 +6,7 @@
 /*   By: lrafael <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 09:55:05 by lrafael           #+#    #+#             */
-/*   Updated: 2024/08/25 08:46:07 by lrafael          ###   ########.fr       */
+/*   Updated: 2024/08/26 10:13:58 by lrafael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_check_file_ext(char *file)
 		if (file[i--] != ".fdf"[j--])
 		{
 			ft_printf("\033[H\033[J'%s%s%s' is an invalid extention,\
- might be: <*.fdf>.\n", RED, file, RESET);
+ it must be: <*.fdf>.\n", RED, file, RESET);
 			exit(1);
 		}
 	}

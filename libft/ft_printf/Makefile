@@ -20,13 +20,13 @@ RM = rm -f
 all: $(NAME)
 
 $(NAME):
-	$(CC) $(CFLAGS) -c $(SRCS) -I ./
-	ar rc $(NAME) $(OBJ)
+	@$(CC) $(CFLAGS) -c $(SRCS) -I ./
+	@ar rc $(NAME) $(OBJ)
 
 clean:
-	$(RM) $(OBJ)
+	@$(RM) $(OBJ)
 
 fclean: clean
-	$(RM) $(NAME);
+	@$(RM) $(NAME);
 
 re: fclean all

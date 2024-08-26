@@ -6,7 +6,7 @@
 /*   By: lrafael <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:38:59 by lrafael           #+#    #+#             */
-/*   Updated: 2024/08/25 08:46:48 by lrafael          ###   ########.fr       */
+/*   Updated: 2024/08/26 10:14:20 by lrafael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,18 @@ static void	mlx_and_structs_init(t_main *mlx, char *title)
 	if (!mlx->map)
 		exit(1);
 	mlx->map->splited = NULL;
-	// mlx->img = (t_img *)malloc(sizeof(t_img));
-	// if (!mlx->img)
-	// 	exit(1);
+	mlx->mlx_img = (t_img *)malloc(sizeof(t_img));
+	if (!mlx->mlx_img)
+		exit(1);
+	mlx->mlx_img->img = mlx_new_image(mlx->mlx, WIN_X, WIN_Y);
+	if (!mlx->mlx_img->img)
+		exit(1);
+	mlx->mlx_img->addr = mlx_get_data_addr(mlx->mlx_img->img,
+			&mlx->mlx_img->bpp, &mlx->mlx_img->l_len, &mlx->mlx_img->endian);
+	mlx->pts = (t_point *)malloc(sizeof(t_point));
+	if (!mlx->pts)
+		exit(1);
+	mlx_loop_hook(mlx->mlx, l_hook, mlx);
 }
 
 void	ft_init(char *file)

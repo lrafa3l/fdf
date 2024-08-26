@@ -6,7 +6,7 @@
 /*   By: lrafael <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:43:12 by lrafael           #+#    #+#             */
-/*   Updated: 2024/08/25 08:45:51 by lrafael          ###   ########.fr       */
+/*   Updated: 2024/08/26 10:13:45 by lrafael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,12 @@ void	mlx_exit(t_main *fdf)
 		free_splited(fdf);
 	if (fdf->map)
 		free(fdf->map);
-	// if (fdf->img)
-	// 	mlx_destroy_image(fdf->mlx, fdf->img);
+	if (fdf->pts)
+		free(fdf->pts);
+	if (fdf->mlx_img->img)
+		mlx_destroy_image(fdf->mlx, fdf->mlx_img->img);
+	if (fdf->mlx_img)
+		free(fdf->mlx_img);
 	if (fdf->win)
 		mlx_destroy_window(fdf->mlx, fdf->win);
 	if (fdf->win_title)
@@ -48,6 +52,22 @@ void	mlx_exit(t_main *fdf)
 	if (fdf)
 		free(fdf);
 	exit(0);
+}
+
+int	l_hook(t_main *data)
+{
+	//t_map	*map;
+	//t_point	offset;
+
+	if (!data->win)
+		return (1);
+	draw_background(data->mlx_img, CBLACK);
+	//map = data->map;
+	// offset.x = WIN_X / 2;
+	// offset.y = WIN_Y / 2;
+	// offset.z = 0;
+	mlx_put_image_to_window(data->mlx, data->win, data->mlx_img->img, 0, 0);
+	return (0);
 }
 
 int	ft_file_len(char *file)

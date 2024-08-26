@@ -69,28 +69,28 @@ BONUS_OBJ = $(BONUS:.c=.o)
 all: $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJ)
 	@make -s -C ft_printf
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
 	@echo "\033c"
 	@echo "\n\t\t\033[92m\033[1m >> Libft Created <<\033[0m\n"
 
 bonus: $(BONUS_OBJ)
-	ar rc $(NAME) $(BONUS_OBJ)
-	ranlib $(NAME)
+	@ar rc $(NAME) $(BONUS_OBJ)
+	@ranlib $(NAME)
 
 clean:
 	@make clean -s -C ft_printf
-	/bin/rm -f $(OBJ) $(BONUS_OBJ)
+	@/bin/rm -f $(OBJ) $(BONUS_OBJ)
 	@echo "\033c"
 	@echo "\n\t\t\033[31m\033[1m >> Erased <<\033[0m \n"
 
 fclean: clean
 	@make fclean -s -C ft_printf
-	/bin/rm -f $(NAME)
+	@/bin/rm -f $(NAME)
 	@echo "\033c"
 	@echo "\n\t\t\033[31m\033[1m >> Everything Deleted! <<\033[0m\n"
 
