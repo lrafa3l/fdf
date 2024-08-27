@@ -6,7 +6,7 @@
 /*   By: lrafael <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 10:38:10 by lrafael           #+#    #+#             */
-/*   Updated: 2024/08/26 10:12:14 by lrafael          ###   ########.fr       */
+/*   Updated: 2024/08/27 06:11:58 by lrafael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,23 @@
 
 typedef struct s_z_info
 {
-	int			z;
+	int			x;
+	int			y;
+	int			value;
 	int			color;
 }				t_z_info;
 
+// typedef struct s_delta
+// {
+
+// }				t_delta;
+
 typedef struct s_map
 {
+	t_z_info	***z;
+	char		**map;
 	int			x;
 	int			y;
-	int			z;
-	int			fd;
-	t_z_info	***splited;
 }				t_map;
 
 typedef struct s_point
@@ -104,24 +110,31 @@ typedef struct s_main
 	char		*win_title;
 }				t_main;
 
-t_z_info		**ft_rdinfo(char **matrix);
+t_z_info		**ft_rdinfo(char **matrix, t_main *axis, int j);
+t_point			ft_sub(t_point pt0, t_point pt1);
+t_point			ft_add(t_point pt0, t_point pt1);
 
-int				close_win(int key, t_main *fdf);
-int				xclose_win(t_main *fdf);
+int				ft_draw_line_right(t_img *img, t_point start, t_point end);
+int				ft_draw_line_down(t_img *img, t_point start, t_point end);
+int				ft_draw_line(t_img *img, t_point start, t_point end);
+int				ft_close_win(int key, t_main *fdf);
+int				ft_loop_hook(t_main *data);
+int				ft_xclose_win(t_main *fdf);
 int				ft_file_len(char *file);
 int				ft_atoh(char *matrix);
-int				l_hook(t_main *data);
 
-void			ft_print_error(t_main *fdf, char *error_message);
-void			file_to_map(t_main *fdf, char **matrix);
-void			draw_background(t_img *img, int color);
-void			ft_parse_map(char *map, t_main *fdf);
+void			ft_draw(t_img *img, t_main *map, t_point offset);
+void			ft_print_error(t_main *fdf, char *msg_error);
+void			ft_file_to_map(t_main *fdf, char **matrix);
+void			ft_draw_background(t_img *img, int color);
+void			ft_check_map(char *map, t_main *fdf);
 void			ft_read_map(t_main *fdf, char *file);
 void			ft_pixel_put(t_img *img, t_point pt);
 void			ft_check_file_ext(char *file);
+void			ft_free_zpoint(t_main *fdf);
 void			ft_check_file(char *file);
-void			free_splited(t_main *fdf);
-void			mlx_exit(t_main *fdf);
+void			ft_free_map(t_main *map);
+void			ft_mlx_exit(t_main *fdf);
 void			ft_init(char *file);
 
 #endif

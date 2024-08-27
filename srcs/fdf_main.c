@@ -6,11 +6,11 @@
 /*   By: lrafael <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:38:59 by lrafael           #+#    #+#             */
-/*   Updated: 2024/08/26 10:14:20 by lrafael          ###   ########.fr       */
+/*   Updated: 2024/08/27 06:11:02 by lrafael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../incs/fdf.h"
 
 static void	mlx_and_structs_init(t_main *mlx, char *title)
 {
@@ -24,7 +24,6 @@ static void	mlx_and_structs_init(t_main *mlx, char *title)
 	mlx->map = (t_map *)malloc(sizeof(t_map));
 	if (!mlx->map)
 		exit(1);
-	mlx->map->splited = NULL;
 	mlx->mlx_img = (t_img *)malloc(sizeof(t_img));
 	if (!mlx->mlx_img)
 		exit(1);
@@ -36,7 +35,9 @@ static void	mlx_and_structs_init(t_main *mlx, char *title)
 	mlx->pts = (t_point *)malloc(sizeof(t_point));
 	if (!mlx->pts)
 		exit(1);
-	mlx_loop_hook(mlx->mlx, l_hook, mlx);
+	mlx->map->z = NULL;
+	mlx->map->map = NULL;
+	//mlx_loop_hook(mlx->mlx, ft_loop_hook, mlx);
 }
 
 void	ft_init(char *file)
@@ -50,8 +51,11 @@ void	ft_init(char *file)
 		exit(1);
 	mlx_and_structs_init(fdf, file);
 	ft_read_map(fdf, file);
-	mlx_key_hook(fdf->win, close_win, fdf);
-	mlx_hook(fdf->win, 17, 1L << 0, xclose_win, fdf);
+	ft_draw_background(fdf->mlx_img, CBLACK);
+	//ft_draw(fdf);
+	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->mlx_img->img, 0, 0);
+	mlx_key_hook(fdf->win, ft_close_win, fdf);
+	mlx_hook(fdf->win, 17, 1L << 0, ft_xclose_win, fdf);
 	mlx_loop(fdf->mlx);
 }
 

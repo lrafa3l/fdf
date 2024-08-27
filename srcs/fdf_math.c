@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_draw_extra.c                                   :+:      :+:    :+:   */
+/*   fdf_math.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrafael <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/25 14:22:40 by lrafael           #+#    #+#             */
-/*   Updated: 2024/08/27 06:09:55 by lrafael          ###   ########.fr       */
+/*   Created: 2024/08/26 18:59:59 by lrafael           #+#    #+#             */
+/*   Updated: 2024/08/27 06:11:30 by lrafael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/fdf.h"
 
-void	ft_pixel_put(t_img *img, t_point pt)
+t_point	ft_add(t_point pt0, t_point pt1)
 {
-	char	*pxl;
-	int		x;
-	int		y;
+	t_point	sum;
 
-	x = round(pt.x);
-	y = round(pt.y);
-	if (x < 0 || x >= WIN_X || y < 0 || y >= WIN_Y)
-		return ;
-	pxl = img->addr + y * img->l_len + x * (img->bpp / 8);
-	*(int *)pxl = pt.color;
+	sum.x = pt0.x + pt1.x;
+	sum.y = pt0.y + pt1.y;
+	sum.z = pt0.z + pt1.z;
+	sum.color = pt0.color;
+	return (sum);
+}
+
+t_point	ft_sub(t_point pt0, t_point pt1)
+{
+	t_point	diff;
+
+	diff.x = pt0.x - pt1.x;
+	diff.y = pt0.y - pt1.y;
+	diff.z = pt0.z - pt1.z;
+	diff.color = pt0.color;
+	return (diff);
 }

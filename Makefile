@@ -6,7 +6,7 @@
 #    By: lrafael <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/28 13:09:10 by lrafael           #+#    #+#              #
-#    Updated: 2024/08/26 10:17:18 by lrafael          ###   ########.fr        #
+#    Updated: 2024/08/27 06:11:44 by lrafael          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,13 +19,17 @@ SRCS_DIR		= srcs
 OBJS_DIR		= obj
 LIBFT_DIR		= ./libft
 MINILIBX_DIR	= ./minilibx-linux
-INCLUDE			= -Iincs -I/usr/include -Imlx_linux -O3
+INCLUDE			= -Iincs
 
 # Source and Objects files
 SRCS			= $(SRCS_DIR)/fdf_main.c			\
 					$(SRCS_DIR)/fdf_extra.c			\
 					$(SRCS_DIR)/fdf_map_process.c	\
 					$(SRCS_DIR)/fdf_hooks.c			\
+					$(SRCS_DIR)/fdf_draw.c			\
+					$(SRCS_DIR)/fdf_draw_extra.c	\
+					$(SRCS_DIR)/fdf_draw_lines.c	\
+					$(SRCS_DIR)/fdf_math.c	\
 					$(SRCS_DIR)/fdf_file_check.c
 
 OBJS			= $(SRCS:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
@@ -61,7 +65,7 @@ clean:
 	@make clean -s -C $(MINILIBX_DIR)
 	@rm -rf $(OBJS_DIR)
 	@printf "\033c"
-	@echo "\n\t\t\$(RED)$(BOLD)Deleted!$(RESET)\n"
+	@echo "\n\t\t\$(RED)$(BOLD)Objects Deleted!$(RESET)\n"
 
 fclean: clean
 	@make fclean -s -C $(LIBFT_DIR)

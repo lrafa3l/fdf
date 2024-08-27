@@ -6,7 +6,7 @@
 /*   By: lrafael <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 16:58:59 by lrafael           #+#    #+#             */
-/*   Updated: 2024/08/26 10:14:30 by lrafael          ###   ########.fr       */
+/*   Updated: 2024/08/27 06:11:16 by lrafael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,25 +41,26 @@ int	ft_atoh(char *matrix)
 	return (hex);
 }
 
-t_z_info	**ft_rdinfo(char **matrix)
+t_z_info	**ft_rdinfo(char **matrix, t_main *axis, int j)
 {
 	t_z_info	**z;
 	int			i;
 
-	i = 0;
-	while (matrix[i] != NULL)
-		i++;
-	z = (t_z_info **)malloc(sizeof(t_z_info *) * (i + 1));
+	while (matrix[axis->map->x] != NULL)
+		axis->map->x++;
+	z = (t_z_info **)malloc(sizeof(t_z_info *) * (axis->map->x + 1));
 	if (!z)
 		exit(1);
-	z[i] = NULL;
+	z[axis->map->x] = NULL;
 	i = -1;
 	while (matrix[++i])
 	{
 		z[i] = (t_z_info *)malloc(sizeof(t_z_info));
 		if (!z[i])
 			exit(1);
-		z[i]->z = ft_atoi(matrix[i]);
+		z[i]->x = i;
+		z[i]->y = j;
+		z[i]->value = ft_atoi(matrix[i]);
 		z[i]->color = ft_atoh(matrix[i]);
 		free(matrix[i]);
 	}
@@ -67,29 +68,30 @@ t_z_info	**ft_rdinfo(char **matrix)
 	return (z);
 }
 
-void	file_to_map(t_main *fdf, char **matrix)
+void	ft_file_to_map(t_main *fdf, char **matrix)
 {
 	int	i;
 
-	i = 0;
-	while (matrix[i])
-		i++;
-	fdf->map->splited = (t_z_info ***)malloc(sizeof(t_z_info **) * (i + 1));
-	if (!fdf->map->splited)
+	fdf->map->y = 0;
+	fdf->map->x = 0;
+	while (matrix[fdf->map->y])
+		fdf->map->y++;
+	fdf->map->z = (t_z_info ***)malloc(sizeof(t_z_info **) * (fdf->map->y + 1));
+	if (!fdf->map->z)
 		exit(1);
-	fdf->map->splited[i] = NULL;
+	fdf->map->z[fdf->map->y] = NULL;
 	i = -1;
 	while (matrix[++i])
 	{
-		fdf->map->splited[i] = ft_rdinfo(ft_split(matrix[i], 32));
-		if (!fdf->map->splited[i])
+		fdf->map->z[i] = ft_rdinfo(ft_split(matrix[i], 32), fdf, i);
+		if (!fdf->map->z[i])
 			exit(1);
 		free(matrix[i]);
 	}
 	free(matrix);
 }
 
-void	ft_parse_map(char *map, t_main *fdf)
+void	ft_check_map(char *map, t_main *fdf)
 {
 	int	i;
 
@@ -97,7 +99,7 @@ void	ft_parse_map(char *map, t_main *fdf)
 	if (!map[0])
 	{
 		free(map);
-		ft_print_error(fdf, "Error map data");
+		ft_print_error(fdf, "Map error :(");
 	}
 	while (map[++i])
 		if (map[i] == '\n' && (map[i + 1] == '\n' || map[i + 1] == '\0'))
@@ -122,8 +124,9 @@ void	ft_read_map(t_main *fdf, char *file)
 	if (!buff)
 		exit(1);
 	file_buff[buff] = '\0';
-	ft_parse_map(file_buff, fdf);
-	file_to_map(fdf, ft_split(file_buff, '\n'));
+	ft_check_map(file_buff, fdf);
+	fdf->map->map = ft_split(file_buff, '\n');
+	ft_file_to_map(fdf, ft_split(file_buff, '\n'));
 	free(file_buff);
 	close(fd);
 }
