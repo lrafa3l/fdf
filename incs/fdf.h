@@ -46,28 +46,6 @@
 # define CCYAN 0x00FFFF
 # define CMAGENTA 0xFF00FF
 
-# define CGRAY 0x808080
-# define CLGRAY 0xD3D3D3
-# define CDGRAY 0xA9A9A9
-
-# define CLRED 0xFFCCCC
-# define CDRED 0x8B0000
-
-# define CLGREEN 0x90EE90
-# define CDGREEN 0x006400
-
-# define CLBLUE 0xADD8E6
-# define CDBLUE 0x00008B
-
-# define CLPURPLE 0xD8BFD8
-# define CDPURPLE 0x4B0082
-
-# define CLORANGE 0xFFDAB9
-# define CDORANGE 0xFF8C00
-
-# define CLBROWN 0xA0522D
-# define CDBROWN 0x8B4513
-
 # define CTURQUOISE 0x40E0D0
 # define CTEAL 0x008080
 # define CINDIGO 0x4B0082
