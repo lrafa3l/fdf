@@ -18,8 +18,8 @@ void	ft_pixel_put(t_img *img, t_point pt)
 	int		x;
 	int		y;
 
-	x = round(pt.x);
-	y = round(pt.y);
+	x = pt.x;
+	y = pt.y;
 	if (x < 0 || x >= WIN_X || y < 0 || y >= WIN_Y)
 		return ;
 	pxl = img->addr + y * img->l_len + x * (img->bpp / 8);

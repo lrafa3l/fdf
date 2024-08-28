@@ -14,11 +14,15 @@
 # define FDF_H
 
 # ifndef WIN_X
-#  define WIN_X 1440
+#  define WIN_X 800
 # endif
 
 # ifndef WIN_Y
-#  define WIN_Y 900
+#  define WIN_Y 600
+# endif
+
+# ifndef SPACE
+#  define SPACE 10
 # endif
 
 # define CRED 0xFF0000
@@ -85,9 +89,9 @@ typedef struct s_map
 
 typedef struct s_point
 {
-	float_t		x;
-	float_t		y;
-	float_t		z;
+	int			x;
+	int			y;
+	int			z;
 	int			color;
 }				t_point;
 
@@ -113,6 +117,8 @@ typedef struct s_main
 t_z_info		**ft_rdinfo(char **matrix, t_main *axis, int j);
 t_point			ft_sub(t_point pt0, t_point pt1);
 t_point			ft_add(t_point pt0, t_point pt1);
+t_point			ft_right(t_point pt0, t_point pt1, t_main *fdf);
+t_point			ft_down(t_point pt0, t_point pt1, t_main *fdf);
 
 int				ft_draw_line_right(t_img *img, t_point start, t_point end);
 int				ft_draw_line_down(t_img *img, t_point start, t_point end);
@@ -122,6 +128,7 @@ int				ft_loop_hook(t_main *data);
 int				ft_xclose_win(t_main *fdf);
 int				ft_file_len(char *file);
 int				ft_atoh(char *matrix);
+void			ft_process(t_main *data);
 
 void			ft_draw(t_img *img, t_main *map, t_point offset);
 void			ft_print_error(t_main *fdf, char *msg_error);

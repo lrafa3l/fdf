@@ -12,20 +12,19 @@
 
 #include "../incs/fdf.h"
 
-// int	ft_loop_hook(t_main *data)
-// {
-// 	t_point	offset;
+void	ft_process(t_main *data)
+{
+	t_point	offset;
 
-// 	if (!data->win)
-// 		return (1);
-// 	ft_draw_background(data->mlx_img, CBLACK);
-// 	offset.x = WIN_X / 2;
-// 	offset.y = WIN_Y / 2;
-// 	offset.z = 0;
-// 	ft_draw(data->mlx_img, data, offset);
-// 	mlx_put_image_to_window(data->mlx, data->win, data->mlx_img->img, 0, 0);
-// 	return (0);
-// }
+	if (!data->win)
+		exit (1);
+	ft_draw_background(data->mlx_img, CBLACK);
+	offset.x = (WIN_X / 2) - ((data->map->x * SPACE) / 2);
+	offset.y = (WIN_Y / 2) - ((data->map->y * SPACE) / 2);
+	offset.z = 0;
+	ft_draw(data->mlx_img, data, offset);
+	mlx_put_image_to_window(data->mlx, data->win, data->mlx_img->img, 0, 0);
+}
 
 int	ft_close_win(int key, t_main *fdf)
 {

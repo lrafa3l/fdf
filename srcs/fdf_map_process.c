@@ -86,9 +86,7 @@ void	ft_file_to_map(t_main *fdf, char **matrix)
 		fdf->map->z[i] = ft_rdinfo(ft_split(matrix[i], 32), fdf, i);
 		if (!fdf->map->z[i])
 			exit(1);
-		free(matrix[i]);
 	}
-	free(matrix);
 }
 
 void	ft_check_map(char *map, t_main *fdf)
@@ -126,7 +124,7 @@ void	ft_read_map(t_main *fdf, char *file)
 	file_buff[buff] = '\0';
 	ft_check_map(file_buff, fdf);
 	fdf->map->map = ft_split(file_buff, '\n');
-	ft_file_to_map(fdf, ft_split(file_buff, '\n'));
+	ft_file_to_map(fdf, fdf->map->map);
 	free(file_buff);
 	close(fd);
 }

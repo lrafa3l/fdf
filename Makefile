@@ -51,8 +51,8 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 $(NAME): $(OBJS)
-	@make re -s -C $(LIBFT_DIR)
-	@make re -s -C $(MINILIBX_DIR)
+	@make -s -C $(LIBFT_DIR)
+	@make -s -C $(MINILIBX_DIR)
 	@$(CC) $(OBJS) $(LIBS) -o $(NAME)
 	@printf "\033c"
 	@echo "\n\t\t$(GREEN)$(BOLD) ~ Fil de Fer(FDF) Compiled! ~$(RESET) \n"
@@ -69,7 +69,6 @@ clean:
 
 fclean: clean
 	@make fclean -s -C $(LIBFT_DIR)
-	@make clean -s -C $(MINILIBX_DIR)
 	@rm -f $(NAME)
 	@printf "\033c"
 	@echo "\n\t\t\$(RED)$(BOLD)Everything Deleted!$(RESET)\n"

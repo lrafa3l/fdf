@@ -19,7 +19,7 @@ void	ft_free_map(t_main *map)
 	i = 0;
 	while (map->map->map[i])
 		free(map->map->map[i++]);
-	free (map->map->map);
+	free(map->map->map);
 }
 
 void	ft_free_zpoint(t_main *fdf)

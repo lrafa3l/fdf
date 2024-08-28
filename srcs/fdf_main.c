@@ -37,7 +37,6 @@ static void	mlx_and_structs_init(t_main *mlx, char *title)
 		exit(1);
 	mlx->map->z = NULL;
 	mlx->map->map = NULL;
-	//mlx_loop_hook(mlx->mlx, ft_loop_hook, mlx);
 }
 
 void	ft_init(char *file)
@@ -52,8 +51,7 @@ void	ft_init(char *file)
 	mlx_and_structs_init(fdf, file);
 	ft_read_map(fdf, file);
 	ft_draw_background(fdf->mlx_img, CBLACK);
-	//ft_draw(fdf);
-	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->mlx_img->img, 0, 0);
+	ft_process(fdf);
 	mlx_key_hook(fdf->win, ft_close_win, fdf);
 	mlx_hook(fdf->win, 17, 1L << 0, ft_xclose_win, fdf);
 	mlx_loop(fdf->mlx);
