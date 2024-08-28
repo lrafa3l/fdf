@@ -12,6 +12,19 @@
 
 #include "../incs/fdf.h"
 
+void	ft_iso_projection(t_point *pt)
+{
+	int	original_x;
+	int	original_y;
+	int	original_z;
+
+	original_x = pt->x;
+	original_y = pt->y;
+	original_z = pt->z;
+	pt->x = original_x - original_y;
+	pt->y = ((original_x + original_y) / 2) - original_z;
+}
+
 t_point	ft_right(t_point pt0, t_point pt1, t_main *fdf)
 {
 	t_point	sum;
@@ -20,8 +33,9 @@ t_point	ft_right(t_point pt0, t_point pt1, t_main *fdf)
 	pt0.color = fdf->map->z[pt0.y][pt0.x + 1]->color;
 	sum.x = (SPACE * (pt0.x + 1)) + pt1.x;
 	sum.y = (SPACE * pt0.y) + pt1.y;
-	sum.z = (SPACE * pt0.z) + pt1.z;
+	sum.z = (ZSPACE * pt0.z) + pt1.z;
 	sum.color = pt0.color;
+	ft_iso_projection(&sum);
 	return (sum);
 }
 
@@ -33,8 +47,9 @@ t_point	ft_down(t_point pt0, t_point pt1, t_main *fdf)
 	pt0.color = fdf->map->z[pt0.y + 1][pt0.x]->color;
 	sum.x = (SPACE * pt0.x) + pt1.x;
 	sum.y = (SPACE * (pt0.y + 1)) + pt1.y;
-	sum.z = (SPACE * pt0.z) + pt1.z;
+	sum.z = (ZSPACE * pt0.z) + pt1.z;
 	sum.color = pt0.color;
+	ft_iso_projection(&sum);
 	return (sum);
 }
 
@@ -44,8 +59,9 @@ t_point	ft_add(t_point pt0, t_point pt1)
 
 	sum.x = (SPACE * pt0.x) + pt1.x;
 	sum.y = (SPACE * pt0.y) + pt1.y;
-	sum.z = (SPACE * pt0.z) + pt1.z;
+	sum.z = (ZSPACE * pt0.z) + pt1.z;
 	sum.color = pt0.color;
+	ft_iso_projection(&sum);
 	return (sum);
 }
 

@@ -14,15 +14,27 @@
 # define FDF_H
 
 # ifndef WIN_X
-#  define WIN_X 800
+#  define WIN_X 1000
 # endif
 
 # ifndef WIN_Y
-#  define WIN_Y 600
+#  define WIN_Y 750
+# endif
+
+# ifndef M_PI
+#  define M_PI 3.14
+# endif
+
+# ifndef ANGLE
+#  define ANGLE 30
 # endif
 
 # ifndef SPACE
-#  define SPACE 10
+#  define SPACE 20
+# endif
+
+# ifndef ZSPACE
+#  define ZSPACE 2
 # endif
 
 # define CRED 0xFF0000
