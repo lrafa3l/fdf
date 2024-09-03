@@ -6,37 +6,37 @@
 /*   By: lrafael <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:38:59 by lrafael           #+#    #+#             */
-/*   Updated: 2024/08/27 06:11:02 by lrafael          ###   ########.fr       */
+/*   Updated: 2024/09/03 17:27:48 by lrafael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/fdf.h"
 
-static void	mlx_and_structs_init(t_main *mlx, char *title)
+static void	mlx_and_structs_init(t_main *fdf, char *title)
 {
-	mlx->mlx = mlx_init();
-	if (!mlx->mlx)
+	fdf->mlx = mlx_init();
+	if (!fdf->mlx)
 		exit(1);
-	mlx->win_title = ft_strjoin("Lando's FDF - ", title);
-	mlx->win = mlx_new_window(mlx->mlx, WIN_X, WIN_Y, mlx->win_title);
-	if (!mlx->win)
+	fdf->win_title = ft_strjoin("Lando's FDF - ", title);
+	fdf->win = mlx_new_window(fdf->mlx, WIN_X, WIN_Y, fdf->win_title);
+	if (!fdf->win)
 		exit(1);
-	mlx->map = (t_map *)malloc(sizeof(t_map));
-	if (!mlx->map)
+	fdf->map = (t_map *)malloc(sizeof(t_map));
+	if (!fdf->map)
 		exit(1);
-	mlx->mlx_img = (t_img *)malloc(sizeof(t_img));
-	if (!mlx->mlx_img)
+	fdf->mlx_img = (t_img *)malloc(sizeof(t_img));
+	if (!fdf->mlx_img)
 		exit(1);
-	mlx->mlx_img->img = mlx_new_image(mlx->mlx, WIN_X, WIN_Y);
-	if (!mlx->mlx_img->img)
+	fdf->mlx_img->img = mlx_new_image(fdf->mlx, WIN_X, WIN_Y);
+	if (!fdf->mlx_img->img)
 		exit(1);
-	mlx->mlx_img->addr = mlx_get_data_addr(mlx->mlx_img->img,
-			&mlx->mlx_img->bpp, &mlx->mlx_img->l_len, &mlx->mlx_img->endian);
-	mlx->pts = (t_point *)malloc(sizeof(t_point));
-	if (!mlx->pts)
+	fdf->mlx_img->addr = mlx_get_data_addr(fdf->mlx_img->img,
+			&fdf->mlx_img->bpp, &fdf->mlx_img->l_len, &fdf->mlx_img->endian);
+	fdf->pts = (t_point *)malloc(sizeof(t_point));
+	if (!fdf->pts)
 		exit(1);
-	mlx->map->z = NULL;
-	mlx->map->map = NULL;
+	fdf->map->z = NULL;
+	fdf->map->map = NULL;
 }
 
 void	ft_init(char *file)
@@ -50,8 +50,8 @@ void	ft_init(char *file)
 		exit(1);
 	mlx_and_structs_init(fdf, file);
 	ft_read_map(fdf, file);
-	ft_draw_background(fdf->mlx_img, CBLACK);
-	ft_process(fdf);
+	ft_draw_start(fdf);
+	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->mlx_img->img, 0, 0);
 	mlx_key_hook(fdf->win, ft_close_win, fdf);
 	mlx_hook(fdf->win, 17, 1L << 0, ft_xclose_win, fdf);
 	mlx_loop(fdf->mlx);

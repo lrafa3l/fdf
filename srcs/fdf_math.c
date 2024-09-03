@@ -12,19 +12,6 @@
 
 #include "../incs/fdf.h"
 
-void	ft_iso_projection(t_point *pt)
-{
-	int	original_x;
-	int	original_y;
-	int	original_z;
-
-	original_x = pt->x;
-	original_y = pt->y;
-	original_z = pt->z;
-	pt->x = original_x - original_y;
-	pt->y = ((original_x + original_y) / 2) - original_z;
-}
-
 t_point	ft_right(t_point pt0, t_point pt1, t_main *fdf)
 {
 	t_point	sum;

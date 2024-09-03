@@ -6,7 +6,7 @@
 /*   By: lrafael <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 16:58:59 by lrafael           #+#    #+#             */
-/*   Updated: 2024/08/27 06:11:16 by lrafael          ###   ########.fr       */
+/*   Updated: 2024/09/03 17:27:59 by lrafael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_atoh(char *matrix)
 	while (matrix[check] != ',' && matrix[check + 1] != '\0')
 		check++;
 	if (matrix[check + 1] == '\0')
-		return (0xFFFFFF);
+		return (0xFF6666);
 	check += 3;
 	while (matrix[check] != '\0')
 	{
@@ -36,55 +36,56 @@ int	ft_atoh(char *matrix)
 		else if (c >= 'a' && c <= 'f')
 			hex += c - 'a' + 10;
 		else
-			return (0xFFFFFF);
+			return (0xFF6666);
 	}
 	return (hex);
 }
 
-t_z_info	**ft_rdinfo(char **matrix, t_main *axis, int j)
+t_map_info	**ft_get_info(char **matrix, t_main *fdf, int j)
 {
-	t_z_info	**z;
+	t_map_info	**data;
 	int			i;
 
-	while (matrix[axis->map->x] != NULL)
-		axis->map->x++;
-	z = (t_z_info **)malloc(sizeof(t_z_info *) * (axis->map->x + 1));
-	if (!z)
+	while (matrix[fdf->map->max_x] != NULL)
+		fdf->map->max_x++;
+	data = (t_map_info **)malloc(sizeof(t_map_info *) * (fdf->map->max_x + 1));
+	if (!data)
 		exit(1);
-	z[axis->map->x] = NULL;
+	data[fdf->map->max_x] = NULL;
 	i = -1;
 	while (matrix[++i])
 	{
-		z[i] = (t_z_info *)malloc(sizeof(t_z_info));
-		if (!z[i])
+		data[i] = (t_map_info *)malloc(sizeof(t_map_info));
+		if (!data[i])
 			exit(1);
-		z[i]->x = i;
-		z[i]->y = j;
-		z[i]->value = ft_atoi(matrix[i]);
-		z[i]->color = ft_atoh(matrix[i]);
+		data[i]->x = i;
+		data[i]->y = j;
+		data[i]->value = ft_atoi(matrix[i]);
+		data[i]->color = ft_atoh(matrix[i]);
 		free(matrix[i]);
 	}
 	free(matrix);
-	return (z);
+	return (data);
 }
 
 void	ft_file_to_map(t_main *fdf, char **matrix)
 {
 	int	i;
 
-	fdf->map->y = 0;
-	fdf->map->x = 0;
-	while (matrix[fdf->map->y])
-		fdf->map->y++;
-	fdf->map->z = (t_z_info ***)malloc(sizeof(t_z_info **) * (fdf->map->y + 1));
-	if (!fdf->map->z)
+	fdf->map->max_y = 0;
+	fdf->map->max_x = 0;
+	while (matrix[fdf->map->max_y])
+		fdf->map->max_y++;
+	fdf->map->map_data = (t_map_info ***)malloc(sizeof(t_map_info **)
+			* (fdf->map->max_y + 1));
+	if (!fdf->map->map_data)
 		exit(1);
-	fdf->map->z[fdf->map->y] = NULL;
+	fdf->map->map_data[fdf->map->max_y] = NULL;
 	i = -1;
 	while (matrix[++i])
 	{
-		fdf->map->z[i] = ft_rdinfo(ft_split(matrix[i], 32), fdf, i);
-		if (!fdf->map->z[i])
+		fdf->map->map_data[i] = ft_get_info(ft_split(matrix[i], 32), fdf, i);
+		if (!fdf->map->map_data[i])
 			exit(1);
 	}
 }
