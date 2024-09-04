@@ -103,11 +103,8 @@ void	ft_check_map(char *map, t_main *fdf)
 	while (map[++i])
 	{
 		if (map[i] == '\n' && (map[i + 1] == '\n' || map[i + 1] == '\0'))
-		{
-			free(map);
-			ft_print_error(fdf, "Map error :(");
-		}
-		if (map[i] == '\n' && map[i - 1] == ' ')
+			break ;
+		if (map[i] == '\n' && map[i - 1] ==  ' ')
 		{
 			free(map);
 			ft_print_error(fdf, "Map error :(");
