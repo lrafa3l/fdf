@@ -6,7 +6,7 @@
 /*   By: lrafael <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:43:12 by lrafael           #+#    #+#             */
-/*   Updated: 2024/09/03 17:27:10 by lrafael          ###   ########.fr       */
+/*   Updated: 2024/09/04 14:12:11 by lrafael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,27 @@ void	ft_free_map(t_main *map)
 	free(map->map->map);
 }
 
-void	ft_free_zpoint(t_main *fdf)
+void	ft_free_map_data(t_main *fdf)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (fdf->map->z[i])
+	while (fdf->map->map_data[i])
 	{
 		j = 0;
-		while (fdf->map->z[i][j])
-			free(fdf->map->z[i][j++]);
-		free(fdf->map->z[i++]);
+		while (fdf->map->map_data[i][j])
+			free(fdf->map->map_data[i][j++]);
+		free(fdf->map->map_data[i++]);
 	}
-	free(fdf->map->z[i]);
-	free(fdf->map->z);
+	free(fdf->map->map_data[i]);
+	free(fdf->map->map_data);
 }
 
 void	ft_mlx_exit(t_main *fdf)
 {
-	if (fdf->map->z)
-		ft_free_zpoint(fdf);
+	if (fdf->map->map_data)
+		ft_free_map_data(fdf);
 	if (fdf->map->map)
 		ft_free_map(fdf);
 	if (fdf->map)

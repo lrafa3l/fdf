@@ -6,7 +6,7 @@
 /*   By: lrafael <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 14:22:40 by lrafael           #+#    #+#             */
-/*   Updated: 2024/09/03 17:26:39 by lrafael          ###   ########.fr       */
+/*   Updated: 2024/09/04 14:11:50 by lrafael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_iso_projection(t_point *pt)
 	pt->y = ((tmp + pt->y) / 2) - pt->z;
 }
 
-int	inter_color(t_point start, t_point end, float t)
+static int	inter_color(t_point start, t_point end, float t)
 {
 	int	r;
 	int	g;
@@ -60,10 +60,10 @@ int	colr(t_point cur, t_point start, t_point end, t_point d)
 	return (inter_color(start, end, n_distance));
 }
 
-t_point	ft_center(t_point offset, t_main *data)
+t_point	ft_center(t_point offset, t_main *fdf)
 {
-	offset.x = (WIN_X / 3 + 350) - ((data->map->x / 2) * SPACE);
-	offset.y = (WIN_Y / 3 - 350) - ((data->map->y / 2) * SPACE);
+	offset.x = (WIN_X / 3 + 350) - ((fdf->map->max_x / 2) * SPACE);
+	offset.y = (WIN_Y / 3 - 350) - ((fdf->map->max_y / 2) * SPACE);
 	offset.z = 0;
 	return (offset);
 }

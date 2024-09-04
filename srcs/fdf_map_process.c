@@ -6,7 +6,7 @@
 /*   By: lrafael <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 16:58:59 by lrafael           #+#    #+#             */
-/*   Updated: 2024/09/03 17:27:59 by lrafael          ###   ########.fr       */
+/*   Updated: 2024/09/04 14:23:44 by lrafael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,18 @@ void	ft_check_map(char *map, t_main *fdf)
 		ft_print_error(fdf, "Map error :(");
 	}
 	while (map[++i])
+	{
 		if (map[i] == '\n' && (map[i + 1] == '\n' || map[i + 1] == '\0'))
-			break ;
+		{
+			free(map);
+			ft_print_error(fdf, "Map error :(");
+		}
+		if (map[i] == '\n' && (map[i - 1] == ' '))
+		{
+			free(map);
+			ft_print_error(fdf, "Map error :(");
+		}
+	}
 	while (map[i])
 		map[i++] = '\0';
 }

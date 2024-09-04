@@ -6,7 +6,7 @@
 /*   By: lrafael <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:38:59 by lrafael           #+#    #+#             */
-/*   Updated: 2024/09/03 17:27:48 by lrafael          ###   ########.fr       */
+/*   Updated: 2024/09/04 14:12:43 by lrafael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	mlx_and_structs_init(t_main *fdf, char *title)
 	fdf->mlx = mlx_init();
 	if (!fdf->mlx)
 		exit(1);
-	fdf->win_title = ft_strjoin("Lando's FDF - ", title);
+	fdf->win_title = ft_strjoin("Fil De Fer - ", title);
 	fdf->win = mlx_new_window(fdf->mlx, WIN_X, WIN_Y, fdf->win_title);
 	if (!fdf->win)
 		exit(1);
@@ -35,7 +35,7 @@ static void	mlx_and_structs_init(t_main *fdf, char *title)
 	fdf->pts = (t_point *)malloc(sizeof(t_point));
 	if (!fdf->pts)
 		exit(1);
-	fdf->map->z = NULL;
+	fdf->map->map_data = NULL;
 	fdf->map->map = NULL;
 }
 

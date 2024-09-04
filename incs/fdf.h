@@ -6,7 +6,7 @@
 /*   By: lrafael <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 10:38:10 by lrafael           #+#    #+#             */
-/*   Updated: 2024/09/03 17:28:24 by lrafael          ###   ########.fr       */
+/*   Updated: 2024/09/04 14:11:18 by lrafael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 # include "../minilibx-linux/mlx.h"
 # include <math.h>
 
-typedef struct s_z_info
+typedef struct s_map_info
 {
 	int			x;
 	int			y;
@@ -97,21 +97,20 @@ int				ft_loop_hook(t_main *data);
 int				ft_file_len(char *file);
 int				ft_atoh(char *matrix);
 int				colr(t_point cur, t_point start, t_point end, t_point d);
-int				inter_color(t_point start, t_point end, float t);
 
 void			ft_init(char *file);
 void			ft_check_file_ext(char *file);
 void			ft_check_file(char *file);
 void			ft_read_map(t_main *fdf, char *file);
 void			ft_check_map(char *map, t_main *fdf);
-void			ft_draw_start(t_main *data);
+void			ft_draw_start(t_main *fdf);
 void			ft_draw_background(t_img *img, int color);
 void			ft_draw(t_img *img, t_main *map, t_point offset);
 void			ft_iso_projection(t_point *pt);
 void			ft_pixel_put(t_img *img, t_point pt);
 void			ft_print_error(t_main *fdf, char *msg_error);
 void			ft_file_to_map(t_main *fdf, char **matrix);
-void			ft_free_zpoint(t_main *fdf);
+void			ft_free_map_data(t_main *fdf);
 void			ft_free_map(t_main *map);
 void			ft_mlx_exit(t_main *fdf);
 

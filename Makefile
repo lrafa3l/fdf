@@ -6,7 +6,7 @@
 #    By: lrafael <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/28 13:09:10 by lrafael           #+#    #+#              #
-#    Updated: 2024/09/03 17:29:34 by lrafael          ###   ########.fr        #
+#    Updated: 2024/09/04 14:14:15 by lrafael          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ SRCS			= $(SRCS_DIR)/fdf_main.c			\
 OBJS			= $(SRCS:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
 
 # Libraries
-LIBS			= -L$(MINILIBX_DIR) -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -L$(LIBFT_DIR) -lft
+LIBS			= -L$(MINILIBX_DIR) -lmlx_Linux -lXext -lX11 -lm -L$(LIBFT_DIR) -lft
 
 # Colors
 RESET			= \033[0m

@@ -6,7 +6,7 @@
 /*   By: lrafael <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 14:22:29 by lrafael           #+#    #+#             */
-/*   Updated: 2024/09/03 17:26:25 by lrafael          ###   ########.fr       */
+/*   Updated: 2024/09/04 14:11:38 by lrafael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ void	ft_draw_background(t_img *img, int color)
 	}
 }
 
-void	ft_draw_start(t_main *data)
+void	ft_draw_start(t_main *fdf)
 {
 	t_point	offset;
 
-	if (!data->win)
+	if (!fdf->win)
 		exit(1);
-	ft_draw_background(data->mlx_img, BACK_COLOR);
-	ft_draw(data->mlx_img, data, ft_center(offset, data));
+	ft_draw_background(fdf->mlx_img, BACK_COLOR);
+	ft_draw(fdf->mlx_img, fdf, ft_center(offset, fdf));
 }
