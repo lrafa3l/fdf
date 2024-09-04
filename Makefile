@@ -54,7 +54,7 @@ $(NAME): $(OBJS)
 	@make -s -C $(LIBFT_DIR)
 	@make -s -C $(MINILIBX_DIR)
 	@$(CC) $(OBJS) $(LIBS) -o $(NAME)
-	@printf "\033c"
+	@echo "\033c"
 	@echo "\n\t\t$(GREEN)$(BOLD) ~ Fil de Fer(FDF) Compiled! ~$(RESET) \n"
 
 n:
@@ -64,13 +64,13 @@ clean:
 	@make clean -s -C $(LIBFT_DIR)
 	@make clean -s -C $(MINILIBX_DIR)
 	@rm -rf $(OBJS_DIR)
-	@printf "\033c"
+	@echo "\033c"
 	@echo "\n\t\t\$(RED)$(BOLD)Objects Deleted!$(RESET)\n"
 
 fclean: clean
 	@make fclean -s -C $(LIBFT_DIR)
 	@rm -f $(NAME)
-	@printf "\033c"
+	@echo "\033c"
 	@echo "\n\t\t\$(RED)$(BOLD)Everything Deleted!$(RESET)\n"
 
 re: fclean all
