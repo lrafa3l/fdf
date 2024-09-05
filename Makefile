@@ -6,7 +6,7 @@
 #    By: lrafael <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/28 13:09:10 by lrafael           #+#    #+#              #
-#    Updated: 2024/09/04 14:14:15 by lrafael          ###   ########.fr        #
+#    Updated: 2024/09/05 14:52:44 by lrafael          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ SRCS			= $(SRCS_DIR)/fdf_main.c			\
 					$(SRCS_DIR)/fdf_draw_extra.c	\
 					$(SRCS_DIR)/fdf_draw_lines.c	\
 					$(SRCS_DIR)/fdf_math.c	\
-					$(SRCS_DIR)/fdf_file_check.c
+					$(SRCS_DIR)/fdf_file_check.c\
+					$(SRCS_DIR)/fdf_extra_plus.c
 
 OBJS			= $(SRCS:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
 

@@ -6,33 +6,19 @@
 /*   By: lrafael <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 14:22:40 by lrafael           #+#    #+#             */
-/*   Updated: 2024/09/04 14:11:50 by lrafael          ###   ########.fr       */
+/*   Updated: 2024/09/05 14:50:39 by lrafael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/fdf.h"
-
-void	ft_pixel_put(t_img *img, t_point pt)
-{
-	char	*pxl;
-	int		x;
-	int		y;
-
-	x = pt.x;
-	y = pt.y;
-	if (x < 0 || x >= WIN_X || y < 0 || y >= WIN_Y)
-		return ;
-	pxl = img->addr + y * img->l_len + x * (img->bpp / 8);
-	*(int *)pxl = pt.color;
-}
 
 void	ft_iso_projection(t_point *pt)
 {
 	int	tmp;
 
 	tmp = pt->x;
-	pt->x = (tmp - pt->y);
-	pt->y = ((tmp + pt->y) / 2) - pt->z;
+	pt->x = (tmp - pt->y) * cos(0.610865238);
+	pt->y = ((tmp + pt->y) / 2) - pt->z * sin(0.610865238);
 }
 
 static int	inter_color(t_point start, t_point end, float t)
@@ -62,8 +48,8 @@ int	colr(t_point cur, t_point start, t_point end, t_point d)
 
 t_point	ft_center(t_point offset, t_main *fdf)
 {
-	offset.x = (WIN_X / 3 + 350) - ((fdf->map->max_x / 2) * SPACE);
-	offset.y = (WIN_Y / 3 - 350) - ((fdf->map->max_y / 2) * SPACE);
+	offset.x = (WIN_X / 3 + 450) - ((fdf->map->max_x / 2) * fdf->space);
+	offset.y = (WIN_Y / 3 - 450) - ((fdf->map->max_y / 2) * fdf->space);
 	offset.z = 0;
 	return (offset);
 }

@@ -6,7 +6,7 @@
 /*   By: lrafael <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:43:12 by lrafael           #+#    #+#             */
-/*   Updated: 2024/09/04 14:12:11 by lrafael          ###   ########.fr       */
+/*   Updated: 2024/09/05 14:51:25 by lrafael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,14 @@ void	ft_free_map_data(t_main *fdf)
 	int	i;
 	int	j;
 
-	i = 0;
-	while (fdf->map->map_data[i])
+	i = -1;
+	while (fdf->map->map_data[++i])
 	{
-		j = 0;
-		while (fdf->map->map_data[i][j])
-			free(fdf->map->map_data[i][j++]);
-		free(fdf->map->map_data[i++]);
+		j = -1;
+		while (fdf->map->map_data[i][++j])
+			free(fdf->map->map_data[i][j]);
+		free(fdf->map->map_data[i]);
 	}
-	free(fdf->map->map_data[i]);
 	free(fdf->map->map_data);
 }
 

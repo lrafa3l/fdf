@@ -6,7 +6,7 @@
 /*   By: lrafael <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 10:38:10 by lrafael           #+#    #+#             */
-/*   Updated: 2024/09/04 14:11:18 by lrafael          ###   ########.fr       */
+/*   Updated: 2024/09/05 14:52:55 by lrafael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_map
 	char		**map;
 	int			max_x;
 	int			max_y;
+	int			max_z;
 }				t_map;
 
 typedef struct s_point
@@ -75,6 +76,7 @@ typedef struct s_main
 	t_map		*map;
 	t_img		*mlx_img;
 	t_point		*pts;
+	int			space;
 	void		*mlx;
 	void		*win;
 	char		*win_title;
@@ -83,7 +85,7 @@ typedef struct s_main
 t_map_info		**ft_get_info(char **matrix, t_main *fdf, int j);
 
 t_point			ft_sub(t_point pt0, t_point pt1);
-t_point			ft_add(t_point pt0, t_point pt1);
+t_point			ft_add(t_point pt0, t_point pt1, t_main *fdf);
 t_point			ft_right(t_point pt0, t_point pt1, t_main *fdf);
 t_point			ft_down(t_point pt0, t_point pt1, t_main *fdf);
 t_point			ft_center(t_point offset, t_main *data);
@@ -97,7 +99,11 @@ int				ft_loop_hook(t_main *data);
 int				ft_file_len(char *file);
 int				ft_atoh(char *matrix);
 int				colr(t_point cur, t_point start, t_point end, t_point d);
+int				ft_min_size(int a, int b);
+int				ft_verif_parse_x(char **matrix, t_main *fdf);
 
+void			ft_data_init(t_map_info **data, t_main *fdf);
+void			ft_max_z(t_main *fdf, int n);
 void			ft_init(char *file);
 void			ft_check_file_ext(char *file);
 void			ft_check_file(char *file);
@@ -105,6 +111,7 @@ void			ft_read_map(t_main *fdf, char *file);
 void			ft_check_map(char *map, t_main *fdf);
 void			ft_draw_start(t_main *fdf);
 void			ft_draw_background(t_img *img, int color);
+void			ft_space(t_main *fdf);
 void			ft_draw(t_img *img, t_main *map, t_point offset);
 void			ft_iso_projection(t_point *pt);
 void			ft_pixel_put(t_img *img, t_point pt);

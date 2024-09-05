@@ -6,7 +6,7 @@
 /*   By: lrafael <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:38:59 by lrafael           #+#    #+#             */
-/*   Updated: 2024/09/04 14:12:43 by lrafael          ###   ########.fr       */
+/*   Updated: 2024/09/05 14:51:58 by lrafael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,25 @@ static void	mlx_and_structs_init(t_main *fdf, char *title)
 {
 	fdf->mlx = mlx_init();
 	if (!fdf->mlx)
-		exit(1);
+		ft_mlx_exit(fdf);
 	fdf->win_title = ft_strjoin("Fil De Fer - ", title);
 	fdf->win = mlx_new_window(fdf->mlx, WIN_X, WIN_Y, fdf->win_title);
 	if (!fdf->win)
-		exit(1);
+		ft_mlx_exit(fdf);
 	fdf->map = (t_map *)malloc(sizeof(t_map));
 	if (!fdf->map)
-		exit(1);
+		ft_mlx_exit(fdf);
 	fdf->mlx_img = (t_img *)malloc(sizeof(t_img));
 	if (!fdf->mlx_img)
-		exit(1);
+		ft_mlx_exit(fdf);
 	fdf->mlx_img->img = mlx_new_image(fdf->mlx, WIN_X, WIN_Y);
 	if (!fdf->mlx_img->img)
-		exit(1);
+		ft_mlx_exit(fdf);
 	fdf->mlx_img->addr = mlx_get_data_addr(fdf->mlx_img->img,
 			&fdf->mlx_img->bpp, &fdf->mlx_img->l_len, &fdf->mlx_img->endian);
 	fdf->pts = (t_point *)malloc(sizeof(t_point));
 	if (!fdf->pts)
-		exit(1);
+		ft_mlx_exit(fdf);
 	fdf->map->map_data = NULL;
 	fdf->map->map = NULL;
 }
